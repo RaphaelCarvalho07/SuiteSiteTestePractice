@@ -1,7 +1,7 @@
 *** Settings ***
 Resource              ../resources/Resource.robot
 Test Setup            Abrir navegador
-Test Teardown         Fechar navegador
+# Test Teardown         Fechar navegador
 
 ### SETUP ele roda keyword antes da suíte ou antes de um Teste
 ### TEARDOWN ele roda keyword depois de uma suíte ou um teste
@@ -19,4 +19,8 @@ Caso de Teste 02: Procurar produto não existente
     Clicar no botão Pesquisar
     Conferir mensagem de erro "No results were found for your search "itemNãoExistente""
 
+Caso de Teste 03: Listar produtos
+  Acessar a página home do site
+  Passar o mouse por cima da categoria "Women" no menu principal superior de categorias
+  Clicar na sub categoria "Summer Dresses"
 # *** Keywords ***

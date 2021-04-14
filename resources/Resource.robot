@@ -6,7 +6,7 @@ ${URL}          http://automationpractice.com
 ${BROWSER}      firefox
 
 *** Keywords ***
-### SETUP e TEARDOWN
+####################### SETUP e TEARDOWN
 Abrir navegador
   Open Browser    http://automationpractice.com   ${BROWSER}
 
@@ -14,7 +14,7 @@ Fechar navegador
   Close Browser
 
 
-#### Ações
+####################### Ações
 Acessar a página home do site
     Go To              ${URL}
     Title Should Be    My Store
@@ -25,7 +25,16 @@ Digitar o nome do produto "${PRODUTO}" no campo de pesquisa
 Clicar no botão Pesquisar
     Click Element    name=submit_search
 
-#### Conferências
+Passar o mouse por cima da categoria "${CATEGORIA}" no menu principal superior de categorias
+    Wait Until Element Is Visible         xpath=//*[@id="block_top_menu"]//a[@title="${CATEGORIA}"]
+    Mouse Over                            xpath=//*[@id="block_top_menu"]//a[@title="${CATEGORIA}"]
+
+Clicar na sub categoria "${CATEGORIA}"
+    Wait Until Element Is Visible         xpath=//*[@id="block_top_menu"]//a[@title="${CATEGORIA}"]
+    Click Element                         xpath=//*[@id="block_top_menu"]//a[@title="${CATEGORIA}"]
+
+
+####################### Conferências
 Conferir se o produto "${PRODUTO}" foi listado no site
     Wait Until Element Is Visible     css=#center_column > h1
     Title Should Be                   Search - My Store
