@@ -49,4 +49,5 @@ Conferir mensagem de erro "${MENSAGEM_ALERTA}"
 Conferir se os produtos da categoria "${CATEGORIA}" foram listados no site
     Wait Until Element Is Visible         css=#center_column > h1
     Title Should Be                       Summer Dresses - My Store
-    Page Should Contain Image             //*[@id="center_column"]//*[@src='${URL}/img/p/1/2/12-home_default.jpg']
+    Page Should Contain Image             xpath=//*[@id="center_column"]//*[@src='${URL}/img/p/2/0/20-home_default.jpg']
+    Page Should Contain Link              xpath=//*[@id="center_column"]//a[@class="product-name"][contains(text(),"Printed Chiffon Dress")]
