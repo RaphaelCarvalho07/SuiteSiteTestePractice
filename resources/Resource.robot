@@ -8,7 +8,7 @@ ${BROWSER}      firefox
 *** Keywords ***
 ####################### SETUP e TEARDOWN
 Abrir navegador
-  Open Browser    http://automationpractice.com   ${BROWSER}
+  Open Browser    ${URL}  ${BROWSER}
 
 Fechar navegador
   Close Browser
@@ -45,3 +45,8 @@ Conferir mensagem de erro "${MENSAGEM_ALERTA}"
     Wait Until Element Is Visible      //*[@id="center_column"]//p[@class='alert alert-warning']
     Element Text Should Be             //*[@id="center_column"]//p[@class='alert alert-warning']    ${MENSAGEM_ALERTA}
     Title Should Be                    Search - My Store
+
+Conferir se os produtos da categoria "${CATEGORIA}" foram listados no site
+    Wait Until Element Is Visible         css=#center_column > h1
+    Title Should Be                       Summer Dresses - My Store
+    Page Should Contain Image             //*[@id="center_column"]//*[@src='${URL}/img/p/1/2/12-home_default.jpg']
