@@ -47,8 +47,8 @@ Clicar no botão "Proceed to checkout"
 Conferir se o produto "${PRODUTO}" foi listado no site
     Wait Until Element Is Visible     css=#center_column > h1
     Title Should Be                   Search - My Store
-    Page Should Contain Image         xpath=//*[@id="center_column"]//*[@src='${URL}/img/p/7/7-home_default.jpg']
-    Page Should Contain Link          xpath=//*[@id="center_column"]//a[@class="product-name"][contains(text(),"${PRODUTO}")]
+    Page Should Contain Image         xpath=//*[@id="center_column"]//*[@src='${URL}/img/p/2/0/20-home_default.jpg"]
+    Page Should Contain Link          xpath=//*[@id="center_column"]//a[@class="product-name"][contains(text(),"Printed Chiffon Dress")]
 
 Conferir mensagem de erro "${MENSAGEM_ALERTA}"
     Wait Until Element Is Visible      //*[@id="center_column"]//p[@class='alert alert-warning']
@@ -57,8 +57,11 @@ Conferir mensagem de erro "${MENSAGEM_ALERTA}"
 
 Conferir se os produtos da sub-categoria "${CATEGORIA}" foram listados no site
     Wait Until Element Is Visible         css=#center_column > h1
-    Title Should Be                       Summer Dresses - My Store
-    Page Should Contain Image             xpath=//*[@id="center_column"]//*[@src='${URL}/img/p/2/0/20-home_default.jpg']
-    Page Should Contain Link              xpath=//*[@id="center_column"]//a[@class="product-name"0][contains(text(),"Printed Chiffon Dress")]
+    Page Should Contain Element           xpath=//*[@id="center_column"]/h1/span[contains(text(),"Summer Dresses")]
+    Page Should Contain Element           xpath=//*[@id="center_column"]/ul/li[1]/div/div[2]/h5/a[@title="Printed Summer Dress"]
+    Page Should Contain Element           xpath=//*[@id="center_column"]/ul/li[2]/div/div[2]/h5/a[@title="Printed Summer Dress"]
+    Page Should Contain Element           xpath=//*[@id="center_column"]/ul/li[3]/div/div[2]/h5/a[@title="Printed Chiffon Dress"]
+
+Conferir se o produto "t-shirt" foi adicionado no carrinho com seus devidos dados e valores
 
 # Conferir
