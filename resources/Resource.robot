@@ -63,5 +63,8 @@ Conferir se os produtos da sub-categoria "${CATEGORIA}" foram listados no site
     Page Should Contain Element           xpath=//*[@id="center_column"]/ul/li[3]/div/div[2]/h5/a[@title="Printed Chiffon Dress"]
 
 Conferir se o produto "t-shirt" foi adicionado no carrinho com seus devidos dados e valores
-
+    Wait Until Element Is Visible  xpath=//*[@id="cart_title"][contains(text(),"Shopping-cart summary")]
+    Element Text Should Be         xpath=//*[@class="cart_description"]/*[@class="product-name"]       Faded Short Sleeve T-shirts
+    Element Text Should Be         xpath=//*[@class="cart_unit"]/*[@class="price"]/span   $16.51
+    Element Text Should Be         id=total_price               $18.51
 # Conferir
