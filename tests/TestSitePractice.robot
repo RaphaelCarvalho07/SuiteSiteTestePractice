@@ -33,7 +33,10 @@ Caso de Teste 04: Adicionar Produtos no Carrinho
     Clicar no botão "Proceed to checkout"
     Conferir se o produto "t-shirt" foi adicionado no carrinho com seus devidos dados e valores
 
-# Caso de Teste 04: Remover produtos
-
-
+Caso de Teste 05: Remover produtos
+    Acessar a página home do site
+    Adicionar o produto "t-shirt" no carrinho
+    Clicar no botão "Proceed to checkout"
+    Excluir o produto do carrinho
+    Conferir se o carrinho fica vazio
 # *** Keywords ***
