@@ -2,7 +2,7 @@
 Library               SeleniumLibrary
 
 *** Variables ***
-${URL}          http://automationpractice.com
+${URL}          http://automationpractice.com/index.php?
 ${BROWSER}      firefox
 
 *** Keywords ***
@@ -43,6 +43,16 @@ Clicar no botão "Proceed to checkout"
     Wait Until Element Is Visible         xpath=//*[@id="layer_cart"]//a[@title="Proceed to checkout"]
     Click Element                         xpath=//*[@id="layer_cart"]//a[@title="Proceed to checkout"]
 
+Adicionar o produto "t-shirt" no carrinho
+    Wait Until Element Is Visible         xpath=//*[@id="center_column"]//img[@alt="Faded Short Sleeve T-shirts"]
+    Click Element                         xpath=//*[@id="center_column"]//img[@alt="Faded Short Sleeve T-shirts"]
+    Wait Until Element Is Visible         xpath=//*[@id="add_to_cart"]/button
+    Click Button                          xpath=//*[@id="add_to_cart"]/button
+
+Excluir o produto do carrinho
+    Wait Until Element Is Visible         xpath=//*[@class="cart_quantity_delete"]
+    Click Element                         xpath=//*[@class="cart_quantity_delete"]
+
 ####################### Conferências
 Conferir se o produto "${PRODUTO}" foi listado no site
     Wait Until Element Is Visible     css=#center_column > h1
@@ -63,8 +73,11 @@ Conferir se os produtos da sub-categoria "${CATEGORIA}" foram listados no site
     Page Should Contain Element           xpath=//*[@id="center_column"]/ul/li[3]/div/div[2]/h5/a[@title="Printed Chiffon Dress"]
 
 Conferir se o produto "t-shirt" foi adicionado no carrinho com seus devidos dados e valores
-    Wait Until Element Is Visible  xpath=//*[@id="cart_title"][contains(text(),"Shopping-cart summary")]
-    Element Text Should Be         xpath=//*[@class="cart_description"]/*[@class="product-name"]       Faded Short Sleeve T-shirts
-    Element Text Should Be         xpath=//*[@class="cart_unit"]/*[@class="price"]/span   $16.51
-    Element Text Should Be         id=total_price               $18.51
-# Conferir
+    Wait Until Element Is Visible         xpath=//*[@id="cart_title"][contains(text(),"Shopping-cart summary")]
+    Element Text Should Be                xpath=//*[@class="cart_description"]/*[@class="product-name"]       Faded Short Sleeve T-shirts
+    Element Text Should Be                xpath=//*[@class="cart_unit"]/*[@class="price"]/span   $16.51
+    Element Text Should Be                id=total_price               $18.51
+
+Conferir se o carrinho fica vazio
+    Wait Until Element Is Visible         xpath=//*[@id="center_column"]/p[@class="alert alert-warning"]
+    Element Text Should Be                xpath=//*[@id="center_column"]/p[@class="alert alert-warning"]      Your shopping cart is empty.
