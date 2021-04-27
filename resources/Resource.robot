@@ -1,6 +1,6 @@
 *** Settings ***
 Library               SeleniumLibrary
-
+Library               String
 *** Variables ***
 ${URL}          http://automationpractice.com/index.php?
 ${BROWSER}      firefox
@@ -58,9 +58,13 @@ Clicar em "Sign in"
     Click Element                         xpath=//*[@id="header"]//*[@class="login"][contains(text(),"Sign in")]
 
 Informar um e-mail válido
-    Wait Until Element Is Visible         xpath=id=email_create
+    Wait Until Element Is Visible         id=email_create
     ${EMAIL}                              Generate Random String
-    Input Text                            xpath=id=email_create    ${EMAIL}@testerobot.com
+    Input Text                            id=email_create    ${EMAIL}@testerobot.com
+
+Clicar em "Create an account"
+    Wait Until Element Is Visible         css=#SubmitCreate
+    Click Button                          css=#SubmitCreate
 
 ####################### Conferências
 Conferir se o produto "${PRODUTO}" foi listado no site
