@@ -51,7 +51,16 @@ Adicionar o produto "t-shirt" no carrinho
 
 Excluir o produto do carrinho
     Wait Until Element Is Visible         xpath=//*[@class="cart_quantity_delete"]
-    Click Element                         xpath=//*[@class="cart_quantity_delete"]
+    Click Element                         xpath=//*[@class="cart_quantity_delete
+
+Clicar em "Sign in"
+    Wait Until Element Is Visible         xpath=//*[@id="header"]//*[@class="login"][contains(text(),"Sign in")]
+    Click Element                         xpath=//*[@id="header"]//*[@class="login"][contains(text(),"Sign in")]
+
+Informar um e-mail válido
+    Wait Until Element Is Visible         xpath=id=email_create
+    ${EMAIL}                              Generate Random String
+    Input Text                            xpath=id=email_create    ${EMAIL}@testerobot.com
 
 ####################### Conferências
 Conferir se o produto "${PRODUTO}" foi listado no site
