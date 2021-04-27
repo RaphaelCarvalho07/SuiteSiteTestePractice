@@ -39,4 +39,11 @@ Caso de Teste 05: Remover produtos
     Clicar no botão "Proceed to checkout"
     Excluir o produto do carrinho
     Conferir se o carrinho fica vazio
+
+Caso de Teste 06: Cadastrar Cliente
+    Acessar a página home do site
+    Clicar em "Sign in"
+    Informar um e-mail válido
+
+
 # *** Keywords ***
