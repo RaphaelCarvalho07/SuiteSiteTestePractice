@@ -3,6 +3,7 @@ Library               SeleniumLibrary
 Library               String
 *** Variables ***
 ${URL}          http://automationpractice.com/index.php?
+${urlTest}      http://automationpractice.com
 ${BROWSER}      firefox
 
 *** Keywords ***
@@ -47,11 +48,11 @@ Adicionar o produto "t-shirt" no carrinho
     Wait Until Element Is Visible         xpath=//*[@id="center_column"]//img[@alt="Faded Short Sleeve T-shirts"]
     Click Element                         xpath=//*[@id="center_column"]//img[@alt="Faded Short Sleeve T-shirts"]
     Wait Until Element Is Visible         xpath=//*[@id="add_to_cart"]/button
-    Click Button                          xpath=//*[@id="add_to_cart"]/button
+    Click Button                          xpath=//*[@id="add_to_cart"]/button     
 
 Excluir o produto do carrinho
     Wait Until Element Is Visible         xpath=//*[@class="cart_quantity_delete"]
-    Click Element                         xpath=//*[@class="cart_quantity_delete
+    Click Element                         xpath=//*[@class="cart_quantity_delete"]
 
 Clicar em "Sign in"
     Wait Until Element Is Visible         xpath=//*[@id="header"]//*[@class="login"][contains(text(),"Sign in")]
@@ -66,12 +67,34 @@ Clicar em "Create an account"
     Wait Until Element Is Visible         css=#SubmitCreate
     Click Button                          css=#SubmitCreate
 
+Preencher os dados obrigatórios
+    Wait Until Element Is Visible         xpath=//*[@id="account-creation_form"]//h3[@class="page-subheading"][contains(text(), "Your personal information")]
+    Click Element                         id=id_gender1
+    Input Text                            id=customer_firstname             Robot
+    Input Text                            id=customer_lastname              Tests
+    Input Text                            id=passwd                         123456
+    Select From List By Index             id=days                           7
+    Select From List By Index             id=months                         12
+    Select From List By Index             id=years                          36
+    Input Text                            id=firstname                      RobotF
+    Input Text                            id=lastname                       rFramework
+    Input Text                            id=company                        Robotizadores
+    Input Text                            id=address1                       Rua Framework, Bairro Robot
+    Input Text                            id=address2                       Robot's Office
+    Input Text                            id=city                           Cidade Maravilhosa
+    Select From List By Index             id=id_state                       33
+    Input Text                            id=postcode                       12345
+    Input Text                            id=phone_mobile                   21999887766
+
+Submeter cadastro
+    Click Button                          id=submitAccount
+
 ####################### Conferências
 Conferir se o produto "${PRODUTO}" foi listado no site
     Wait Until Element Is Visible     css=#center_column > h1
     Title Should Be                   Search - My Store
-    Page Should Contain Image         xpath=//*[@id="center_column"]//*[@src='${URL}/img/p/2/0/20-home_default.jpg"]
-    Page Should Contain Link          xpath=//*[@id="center_column"]//a[@class="product-name"][contains(text(),"Printed Chiffon Dress")]
+    Page Should Contain Image         xpath=//*[@id="center_column"]//*[@src='${urlTest}/img/p/7/7-home_default.jpg']
+    Page Should Contain Link          xpath=//*[@id="center_column"]//a[@class="product-name"][contains(text(),"${PRODUTO}")]
 
 Conferir mensagem de erro "${MENSAGEM_ALERTA}"
     Wait Until Element Is Visible        xpath=//*[@id="center_column"]//p[@class='alert alert-warning']
@@ -94,3 +117,10 @@ Conferir se o produto "t-shirt" foi adicionado no carrinho com seus devidos dado
 Conferir se o carrinho fica vazio
     Wait Until Element Is Visible         xpath=//*[@id="center_column"]/p[@class="alert alert-warning"]
     Element Text Should Be                xpath=//*[@id="center_column"]/p[@class="alert alert-warning"]      Your shopping cart is empty.
+
+Conferir se o cadastro foi efetuado com sucesso
+    Title Should Be                   My account - My Store
+    Element Text Should Be            xpath=//*[@id="center_column"]/h1     MY ACCOUNT
+    Element Text Should Be            xpath=//*[@id="center_column"]/p
+    ...    Welcome to your account. Here you can manage all of your personal information and orders.
+    Element Text Should Be           xpath=//*[@id="header"]/div[2]//div[1]/a/span    Robot Tests

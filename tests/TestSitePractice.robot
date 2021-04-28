@@ -1,7 +1,7 @@
 *** Settings ***
 Resource              ../resources/Resource.robot
 Test Setup            Abrir navegador
-# Test Teardown         Fechar navegador
+Test Teardown         Fechar navegador
 
 ### SETUP ele roda keyword antes da suíte ou antes de um Teste
 ### TEARDOWN ele roda keyword depois de uma suíte ou um teste
@@ -45,6 +45,9 @@ Caso de Teste 06: Cadastrar Cliente
     Clicar em "Sign in"
     Informar um e-mail válido
     Clicar em "Create an account"
+    Preencher os dados obrigatórios
+    Submeter cadastro
+    Conferir se o cadastro foi efetuado com sucesso
 
 
 # *** Keywords ***
