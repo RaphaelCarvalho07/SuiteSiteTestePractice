@@ -5,6 +5,10 @@ Library               String
 ${URL}          http://automationpractice.com/index.php?
 ${urlTest}      http://automationpractice.com
 ${BROWSER}      firefox
+&{CLIENT}       nome=Robot    sobrenome=Tests  senha=123456    diaNascimento=7    mesNascimento=12
+...             anoNascimento=36   firstName=RobotF   lastName=rFramework  company=Robotizadores    endereco=Rua Framework, Bairro Robot
+...             complemento=Robot's Office    cidade=Cidade Maravilhosa   estado=33   CEP=12345
+...             celular=21999887766
 
 *** Keywords ***
 ####################### SETUP e TEARDOWN
@@ -48,7 +52,7 @@ Adicionar o produto "t-shirt" no carrinho
     Wait Until Element Is Visible         xpath=//*[@id="center_column"]//img[@alt="Faded Short Sleeve T-shirts"]
     Click Element                         xpath=//*[@id="center_column"]//img[@alt="Faded Short Sleeve T-shirts"]
     Wait Until Element Is Visible         xpath=//*[@id="add_to_cart"]/button
-    Click Button                          xpath=//*[@id="add_to_cart"]/button     
+    Click Button                          xpath=//*[@id="add_to_cart"]/button
 
 Excluir o produto do carrinho
     Wait Until Element Is Visible         xpath=//*[@class="cart_quantity_delete"]
@@ -70,21 +74,21 @@ Clicar em "Create an account"
 Preencher os dados obrigatórios
     Wait Until Element Is Visible         xpath=//*[@id="account-creation_form"]//h3[@class="page-subheading"][contains(text(), "Your personal information")]
     Click Element                         id=id_gender1
-    Input Text                            id=customer_firstname             Robot
-    Input Text                            id=customer_lastname              Tests
-    Input Text                            id=passwd                         123456
-    Select From List By Index             id=days                           7
-    Select From List By Index             id=months                         12
-    Select From List By Index             id=years                          36
-    Input Text                            id=firstname                      RobotF
-    Input Text                            id=lastname                       rFramework
-    Input Text                            id=company                        Robotizadores
-    Input Text                            id=address1                       Rua Framework, Bairro Robot
-    Input Text                            id=address2                       Robot's Office
-    Input Text                            id=city                           Cidade Maravilhosa
-    Select From List By Index             id=id_state                       33
-    Input Text                            id=postcode                       12345
-    Input Text                            id=phone_mobile                   21999887766
+    Input Text                            id=customer_firstname             ${CLIENT.nome}
+    Input Text                            id=customer_lastname              ${CLIENT.sobrenome}
+    Input Text                            id=passwd                         ${CLIENT.senha}
+    Select From List By Index             id=days                           ${CLIENT.diaNascimento}
+    Select From List By Index             id=months                         ${CLIENT.mesNascimento}
+    Select From List By Index             id=years                          ${CLIENT.anoNascimento}
+    Input Text                            id=firstname                      ${CLIENT.firstName}
+    Input Text                            id=lastname                       ${CLIENT.lastName}
+    Input Text                            id=company                        ${CLIENT.company}
+    Input Text                            id=address1                       ${CLIENT.endereco}
+    Input Text                            id=address2                       ${CLIENT.complemento}
+    Input Text                            id=city                           ${CLIENT.cidade}
+    Select From List By Index             id=id_state                       ${CLIENT.estado}
+    Input Text                            id=postcode                       ${CLIENT.CEP}
+    Input Text                            id=phone_mobile                   ${CLIENT.celular}
 
 Submeter cadastro
     Click Button                          id=submitAccount
