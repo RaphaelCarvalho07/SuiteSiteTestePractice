@@ -3,12 +3,16 @@ Library               SeleniumLibrary
 Library               String
 *** Variables ***
 ${URL}          http://automationpractice.com/index.php?
+
 ${urlTest}      http://automationpractice.com
+
 ${BROWSER}      firefox
+
 &{CLIENT}       nome=Robot    sobrenome=Tests  senha=123456    diaNascimento=7    mesNascimento=12
-...             anoNascimento=36   firstName=RobotF   lastName=rFramework  company=Robotizadores    endereco=Rua Framework, Bairro Robot
-...             complemento=Robot's Office    cidade=Cidade Maravilhosa   estado=33   CEP=12345
-...             celular=21999887766
+...             anoNascimento=36   firstName=RobotF   lastName=rFramework  company=Robotizadores
+...             endereco=Rua Framework, Bairro Robot    complemento=Robot's Office
+...             cidade=Cidade Maravilhosa   estado=33   CEP=12345    celular=21999887766
+
 
 *** Keywords ***
 ####################### SETUP e TEARDOWN
@@ -106,11 +110,12 @@ Conferir mensagem de erro "${MENSAGEM_ALERTA}"
     Title Should Be                      Search - My Store
 
 Conferir se os produtos da sub-categoria "${CATEGORIA}" foram listados no site
+    @{SUMMER_DRESSES}   Create List    Printed Summer Dress    Printed Summer Dress    Printed Chiffon Dress
     Wait Until Element Is Visible         css=#center_column > h1
     Page Should Contain Element           xpath=//*[@id="center_column"]/h1/span[contains(text(),"Summer Dresses")]
-    Page Should Contain Element           xpath=//*[@id="center_column"]/ul/li[1]/div/div[2]/h5/a[@title="Printed Summer Dress"]
-    Page Should Contain Element           xpath=//*[@id="center_column"]/ul/li[2]/div/div[2]/h5/a[@title="Printed Summer Dress"]
-    Page Should Contain Element           xpath=//*[@id="center_column"]/ul/li[3]/div/div[2]/h5/a[@title="Printed Chiffon Dress"]
+    Page Should Contain Element           xpath=//*[@id="center_column"]/ul/li[1]/div/div[2]/h5/a[@title="${SUMMER_DRESSES[0]}"]
+    Page Should Contain Element           xpath=//*[@id="center_column"]/ul/li[2]/div/div[2]/h5/a[@title="${SUMMER_DRESSES[1]}"]
+    Page Should Contain Element           xpath=//*[@id="center_column"]/ul/li[3]/div/div[2]/h5/a[@title="${SUMMER_DRESSES[2]}"]
 
 Conferir se o produto "t-shirt" foi adicionado no carrinho com seus devidos dados e valores
     Wait Until Element Is Visible         xpath=//*[@id="cart_title"][contains(text(),"Shopping-cart summary")]
