@@ -66,10 +66,21 @@ Clicar em "Sign in"
     Wait Until Element Is Visible         xpath=//*[@id="header"]//*[@class="login"][contains(text(),"Sign in")]
     Click Element                         xpath=//*[@id="header"]//*[@class="login"][contains(text(),"Sign in")]
 
+# Informar um e-mail válido
+#     Wait Until Element Is Visible         id=email_create
+#     ${EMAIL}                              Generate Random String
+#     Input Text                            id=email_create    ${EMAIL}@testerobot.com
 Informar um e-mail válido
-    Wait Until Element Is Visible         id=email_create
-    ${EMAIL}                              Generate Random String
-    Input Text                            id=email_create    ${EMAIL}@testerobot.com
+      Wait Until Element Is Visible         id=email_create
+      ${stringAleatoria}                    Generate Random String
+      ${EMAIL}    Criar email customizado   ${CLIENT.nome}     ${CLIENT.sobrenome}
+...   ${stringAleatoria}@testerobot.com
+      Input Text                            id=email_create    ${EMAIL}
+      Log                                   Email: ${EMAIL}
+Criar email customizado
+    [Arguments]           ${userFirstName}    ${UserlastName}    ${randomString}
+    ${emailCreated}       Set Variable        ${userFirstName}${UserlastName}${randomString}
+    [Return]              ${emailCreated}
 
 Clicar em "Create an account"
     Wait Until Element Is Visible         css=#SubmitCreate
