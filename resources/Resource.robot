@@ -6,7 +6,7 @@ ${URL}          http://automationpractice.com/index.php?
 
 ${urlTest}      http://automationpractice.com
 
-${BROWSER}      firefox
+${BROWSER}      chrome
 
 &{CLIENT}       nome=Robot    sobrenome=Tests  senha=123456    diaNascimento=7    mesNascimento=12
 ...             anoNascimento=36   firstName=RobotF   lastName=rFramework  company=Robotizadores
